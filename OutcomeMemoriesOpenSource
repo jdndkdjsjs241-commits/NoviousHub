@@ -1,0 +1,149 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "Nova Hub",
+    LoadingTitle = "Nova Hub",
+    LoadingSubtitle = "Outcome Memories",
+    ConfigurationSaving = { Enabled = false }
+})
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+
+local ESPEnabled = false
+local ESPTable = {}
+
+local function AddESP(Character, Text, Color)
+    if not Character or ESPTable[Character] then return end
+    local Head = Character:FindFirstChild("Head") or Character:FindFirstChild("HumanoidRootPart")
+    if not Head then return end
+    local Bill = Instance.new("BillboardGui")
+    Bill.Adornee = Head Bill.Parent = Head
+    Bill.Size = UDim2.new(0,200,0,50) Bill.StudsOffset = Vector3.new(0,3,0)
+    Bill.AlwaysOnTop = true Bill.LightInfluence = 0
+    local Label = Instance.new("TextLabel", Bill)
+    Label.Size = UDim2.new(1,0,1,0) Label.BackgroundTransparency = 1
+    Label.TextColor3 = Color Label.TextStrokeTransparency = 0.3
+    Label.TextStrokeColor3 = Color3.new(0,0,0) Label.Font = Enum.Font.GothamBold
+    Label.TextSize = 14 Label.Text = Text
+    ESPTable[Character] = Bill
+end
+
+local function UpdateESP()
+    if not ESPEnabled then return end
+    local MyRoot = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    for _, plr in Players:GetPlayers() do
+        if plr ~= LocalPlayer and plr.Character then
+            local Root = plr.Character:FindFirstChild("HumanoidRootPart")
+            if Root then
+                local Dist = MyRoot and math.floor((Root.Position - MyRoot.Position).Magnitude) or 0
+                AddESP(plr.Character, plr.DisplayName.."\n["..Dist.."m]", Color3.fromRGB(0,255,255))
+            end
+        end
+    end
+    for _, Model in Workspace:GetDescendants() do
+        if Model:IsA("Model") and Model:FindFirstChild("HumanoidRootPart") and Model:FindFirstChild("Humanoid") then
+            if Model.Parent and (Model.Parent.Name == "EXE" or Model.Parent.Name == "Survivors") then
+                local Dist = MyRoot and math.floor((Model.HumanoidRootPart.Position - MyRoot.Position).Magnitude) or 0
+                local Color = Model.Parent.Name == "EXE" and Color3.fromRGB(255,0,0) or Color3.fromRGB(0,255,0)
+                AddESP(Model, "["..Model.Parent.Name.."] "..Model.Name.."\n["..Dist.."m]", Color)
+            end
+        end
+    end
+end
+
+local function ClearESP()
+    for _, v in ESPTable do v:Destroy() end
+    ESPTable = {}
+end
+
+local VisualTab  = Window:CreateTab("Visuals")
+local LocalTab   = Window:CreateTab("LocalPlayer")
+local UtilsTab   = Window:CreateTab("Utilities")
+local ScriptsTab = Window:CreateTab("External Scripts")
+local InfoTab    = Window:CreateTab("Info")
+
+VisualTab:CreateToggle({
+    Name = "Player & Model ESP",
+    CurrentValue = false,
+    Callback = function(v)
+        ESPEnabled = v
+        ClearESP()
+        if v then
+            RunService.Heartbeat:Connect(function()
+                if ESPEnabled then ClearESP() UpdateESP() end
+            end)
+        end
+    end
+})
+
+LocalTab:CreateToggle({Name="Speed 100",Callback=function(v) if LocalPlayer.Character then LocalPlayer.Character.Humanoid.WalkSpeed = v and 100 or 16 end end})
+LocalTab:CreateToggle({Name="Jump 150",Callback=function(v) if LocalPlayer.Character then LocalPlayer.Character.Humanoid.JumpPower = v and 150 or 50 end end})
+LocalTab:CreateToggle({Name="FOV 100",Callback=function(v) game.Workspace.CurrentCamera.FieldOfView = v and 100 or 70 end})
+LocalTab:CreateToggle({Name="Infinite Jump",Callback=function(v)
+    if v then UserInputService.JumpRequest:Connect(function()
+        local hum = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if hum then hum:ChangeState("Jumping") end
+    end) end
+end})
+
+UtilsTab:CreateSection("Protection & Visuals")
+UtilsTab:CreateToggle({
+    Name = "Anti Stun",
+    CurrentValue = false,
+    Callback = function(v)
+        if v then
+            RunService.Heartbeat:Connect(function()
+                local hum = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+                if hum then hum.PlatformStand = false hum.Sit = false end
+            end)
+        end
+    end
+})
+
+UtilsTab:CreateToggle({
+    Name = "Fullbright",
+    CurrentValue = false,
+    Callback = function(v)
+        Lighting.Brightness = v and 3 or 1
+        Lighting.GlobalShadows = not v
+        Lighting.FogEnd = v and 100000 or 1000
+        Lighting.ClockTime = v and 14 or 12
+    end
+})
+
+UtilsTab:CreateSection("Performance")
+UtilsTab:CreateButton({
+    Name = "No Lag / FPS Boost",
+    Callback = function()
+        for _, v in pairs(Workspace:GetDescendants()) do
+            if v:IsA("ParticleEmitter") or v:IsA("Trail") or v:IsA("Smoke") or v:IsA("Fire") or v:IsA("Sparkles") then
+                v.Enabled = false
+            elseif v:IsA("Decal") or v:IsA("Texture") then
+                v.Transparency = 1
+            end
+        end
+        Lighting.GlobalShadows = false
+        Lighting.FogEnd = 9e9
+        settings().Rendering.QualityLevel = "Level01"
+        Rayfield:Notify({Title="Success",Content="Lag removed — FPS maxed",Duration=4})
+    end
+})
+
+ScriptsTab:CreateSection("Recommended")
+ScriptsTab:CreateButton({
+    Name = "Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end
+})
+
+InfoTab:CreateParagraph({
+    Title = "Nova Hub",
+    Content = "This is still in progress while i work on other things.\n\nMore features coming soon — stay tuned."
+})
+
+Rayfield:Notify({Title="Nova Hub",Content="Outcome Memories — Loaded",Duration=5})
