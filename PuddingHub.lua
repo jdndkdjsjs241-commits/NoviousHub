@@ -1,5 +1,7 @@
 local Rayfield=loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
+-- 108/109/1863/826/444/777/1337/2025/999/555/111/222/333/444/555/666/777/888/999/000/123/456/789/101/202/303/404/505/606/707/808/909/1111/2222/3333/4444/5555/6666/7777/8888/9/10/11/12/13/14/15/16/17/18/19/20/21/22/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42/43/44/45/46/47/48/49/50/51/52/53/54/55/56/57/58/59/60/61/62/63/64/65/66/67/68/69/70/71/72/73/74/75/76/77/78/79/80/81/82/83/84/85/86/87/88/89/90/91/92/93/94/95/96/97/98/99/100/101/102/103/104/105/106/107/108/109/110/111/112/113/114/115/116/117/118/119/120/121/122/123/124/125/126/127/128/129/130/131/132/133/134/135/136/137/138/139/140/141/142/143/144/145/146/147/148/149/150/151/152/153/154/155/156/157/158/159/160/161/162/163/164/165/166/167/168/169/170/171/172/173/174/175/176/177/178/179/180/181/182/183/184/185/186/187/188/189/190/191/192/193/194/195/196/197/198/199/200/201/202/203/204/205/206/207/208/209/210/211/212/213/214/215/216/217/218/219/220/221/222/223/224/225/226/227/228/229/230/231/232/233/234/235/236/237/238/239/240/241/242/243/244/245/246/247/248/249/250
+
 local Window=Rayfield:CreateWindow({Name="Pudding Hub - Grace Recode v2.0.0",LoadingTitle="Pudding Hub",LoadingSubtitle="Grace Recode by PuddingDev",ConfigurationSaving={Enabled=true,FolderName="PuddingHub",FileName="GraceConfig"},KeySystem=false})
 
 local Players=game:GetService("Players")
@@ -8,18 +10,10 @@ local ReplicatedStorage=game:GetService("ReplicatedStorage")
 local Workspace=game:GetService("Workspace")
 local LocalPlayer=Players.LocalPlayer
 
-local _0xFAKE1=math.random(11111,99999)local _0xFAKE2={}for i=1,999 do table.insert(_0xFAKE2,tostring(math.random()))end
-local function _0xJUNKFUNC1()local a=0 for i=1,50000 do a=a+math.sin(i)*math.cos(i^2)end return a end
-_0xJUNKFUNC1()_0xJUNKFUNC1()_0xJUNKFUNC1()
-local _0xFAKE3=string.rep("NovaProtected"..tostring(tick()))local _0xFAKE4=table.create(300)
-
-local _0xJUNK5=0
-
 local Connections={GraceReprieve=nil,GraceRegular=nil}
 
 local function CleanupNOW()
     for _,obj in ipairs(LocalPlayer:GetDescendants())do if obj.Name=="NOW"then obj:Destroy()end end
-    local _junk=0 for i=1,10000 do _junk=_junk+1 end
 end
 
 local function CollectBeacons()
@@ -30,7 +24,6 @@ local function CollectBeacons()
             pcall(function()Workspace:WaitForChild("Script"):WaitForChild("BeaconPickup"):FireServer(child)end)
         end
     end
-    local _fake=math.random()local _fake2=string.reverse("protected")
 end
 
 local function RemoveKillRemotes()
@@ -42,7 +35,6 @@ local function RemoveKillRemotes()
             end
         end
     end
-    for i=1,15000 do local _=math.sqrt(i)*math.tan(i)end
 end
 
 local function CleanWorkspace()
@@ -57,12 +49,10 @@ local function CleanWorkspace()
             end)
         end
     end
-    local _junkTable={}for i=1,800 do table.insert(_junkTable,i^3)end
 end
 
 local function GraceReprieveLoop()
     CleanupNOW()CollectBeacons()RemoveKillRemotes()CleanWorkspace()
-    local _fakeLoop=0 for i=1,20000 do _fakeLoop=_fakeLoop+math.random()end
 end
 
 local function GetSortedRooms()
@@ -76,7 +66,6 @@ local function GetSortedRooms()
         end
     end
     table.sort(roomModels,function(a,b)return a.number<b.number end)
-    local _junk=string.rep("PuddingHubSecure",50)
     return roomModels
 end
 
@@ -98,8 +87,9 @@ local function ProcessRoom(roomModel)
         end
         for target in pairs(toDestroy)do pcall(function()target:Destroy()end)end
     end
-    local _fakeCalc=0 for i=1,30000 do _fakeCalc=_fakeCalc+i^2 end
 end
+
+-- 108/109/1863/826/444/777/1337/2025/999/555/111/222/333/444/555/666/777/888/999/000/123/456/789/101/202/303/404/505/606/707/808/909/1111/2222/3333/4444/5555/6666/7777/8888/9999/1000/1001/1002/1003/1004/1005/1006/1007/1008/1009/1010/1011/1012/1013/1014/1015/1016/1017/1018/1019/1020/1021/1022/1023/1024/1025/1026/1027/1028/1029/1030/1031/1032/1033/1034/1035/1036/1037/1038/1039/1040/1041/1042/1043/1044/1045/1046/1047/1048/1049/1050/1051/1052/1053/1054/1055/1056/1057/1058/1059/1060/1061/1062/1063/1064/1065/1066/1067/1068/1069/1070/1071/1072/1073/1074/1075/1076/1077/1078/1079/1080/1081/1082/1083/1084/1085/1086/1087/1088/1089/1090/1091/1092/1093/1094/1095/1096/1097/1098/1099/1100
 
 local function TeleportToExit()
     local char=LocalPlayer.Character
@@ -127,7 +117,6 @@ local function TeleportToExit()
     if exit and exit:IsA("BasePart")then
         pcall(function()root.CFrame=exit.CFrame*CFrame.Angles(0,math.rad(45),0)Workspace.CurrentCamera.CFrame=root.CFrame end)
     end
-    local _junkLoop=0 for i=1,25000 do _junkLoop=_junkLoop+math.sin(i) end
 end
 
 local function GraceRegularLoop()
@@ -135,7 +124,6 @@ local function GraceRegularLoop()
     for _,room in ipairs(roomModels)do ProcessRoom(room.model)end
     TeleportToExit()
     RemoveKillRemotes()
-    local _fake=table.concat({"a","b","c","d","e"},",")for i=1,10000 do end
 end
 
 local function SetupAntiKick()
@@ -148,7 +136,6 @@ local function SetupAntiKick()
             end)
         end)
     end
-    local _junk=0 for i=1,40000 do _junk=_junk+i end
 end
 
 local TabMain=Window:CreateTab("Main")
@@ -228,10 +215,6 @@ TabInfo:CreateButton({Name="Destroy UI",Callback=function()
     Rayfield:Destroy()
 end})
 
-local _0xJUNKFINAL=0
-for i=1,100000 do
-    _0xJUNKFINAL=_0xJUNKFINAL+math.random(1,100)
-    if math.random()>0.99 then task.wait() end
-end
+-- 108/109/1863/826/444/777/1337/2025/999/555/111/222/333/444/555/666/777/888/999/000/123/456/789/101/202/303/404/505/606/707/808/909/1111/2222/3333/4444/5555/6666/7777/8888/9999/1000/1001/1002/1003/1004/1005/1006/1007/1008/1009/1010/1011/1012/1013/1014/1015/1016/1017/1018/1019/1020/1021/1022/1023/1024/1025/1026/1027/1028/1029/1030/1031/1032/1033/1034/1035/1036/1037/1038/1039/1040/1041/1042/1043/1044/1045/1046/1047/1048/1049/1050/1051/1052/1053/1054/1055/1056/1057/1058/1059/1060/1061/1062/1063/1064/1065/1066/1067/1068/1069/1070/1071/1072/1073/1074/1075/1076/1077/1078/1079/1080/1081/1082/1083/1084/1085/1086/1087/1088/1089/1090/1091/1092/1093/1094/1095/1096/1097/1098/1099/1100/1101/1102/1103/1104/1105/1106/1107/1108/1109/1110/1111/1112/1113/1114/1115/1116/1117/1118/1119/1120/1121/1122/1123/1124/1125/1126/1127/1128/1129/1130/1131/1132/1133/1134/1135/1136/1137/1138/1139/1140/1141/1142/1143/1144/1145/1146/1147/1148/1149/1150/1151/1152/1153/1154/1155/1156/1157/1158/1159/1160/1161/1162/1163/1164/1165/1166/1167/1168/1169/1170/1171/1172/1173/1174/1175/1176/1177/1178/1179/1180/1181/1182/1183/1184/1185/1186/1187/1188/1189/1190/1191/1192/1193/1194/1195/1196/1197/1198/1199/1200
 
 Rayfield:Notify({Title="Pudding Hub",Content="Grace v2.0.0 loaded",Duration=4})
